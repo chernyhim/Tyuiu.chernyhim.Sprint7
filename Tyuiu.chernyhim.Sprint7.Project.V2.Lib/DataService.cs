@@ -3,6 +3,8 @@
     public class DataService
     {
 
+        /// Расчёт минимальной, максимальной и средней выручки сети магазинов
+
         public (int min, int max, double avg) CalculateStatistics(int[] revenues)
         {
             if (revenues == null || revenues.Length == 0)
@@ -23,11 +25,9 @@
 
             return (min, max, avg);
         }
-        /// <summary>
+        
         /// Расчёт общей выручки сети магазинов
-        /// </summary>
-        /// <param name="revenues">Массив дневных выручек</param>
-        /// <returns>Суммарная выручка</returns>
+        
         public int CalculateTotalRevenue(int[] revenues)
         {
             if (revenues == null || revenues.Length == 0)
