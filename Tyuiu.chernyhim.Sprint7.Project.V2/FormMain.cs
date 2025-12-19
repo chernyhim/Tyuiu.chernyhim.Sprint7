@@ -166,7 +166,6 @@ namespace Tyuiu.chernyhim.Sprint7.Project.V2
         private void buttonSave_CIM_Click(object sender, EventArgs e)
         {
             SaveToCsv_CIM();
-
             string fullPath = Path.GetFullPath(filePath_CIM);
 
             MessageBox.Show(
