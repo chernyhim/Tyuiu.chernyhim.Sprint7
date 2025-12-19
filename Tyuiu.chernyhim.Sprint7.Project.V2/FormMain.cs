@@ -12,6 +12,8 @@ namespace Tyuiu.chernyhim.Sprint7.Project.V2
         private TextBox textBoxAddress_CIM;
         private TextBox textBoxPhone_CIM;
         private TextBox textBoxRevenue_CIM;
+        private DataService ds = new DataService();
+
 
         public FormMain()
         {
@@ -63,28 +65,14 @@ namespace Tyuiu.chernyhim.Sprint7.Project.V2
             LoadFromCsv_CIM();
         }
 
-        private void dataGridView_CIM_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Очищаем и настраиваем DataGridView
-            dataGridView_CIM.Columns.Clear();
-            dataGridView_CIM.Rows.Clear();
-            dataGridView_CIM.ReadOnly = true; //только для чтения
-            dataGridView_CIM.AllowUserToAddRows = false; // Запретить добавление новых строк
-            dataGridView_CIM.AllowUserToDeleteRows = false; // Запретить удаление строк
-            dataGridView_CIM.AllowUserToOrderColumns = false; // Запретить перетаскивание колонок
-            dataGridView_CIM.AllowUserToResizeRows = false; // Запрет изменения высоты колонки
-            dataGridView_CIM.AllowUserToResizeColumns = false; // Запрет изменения ширины колонок
-        }
-
         private void buttonAdd_CIM_Click(object sender, EventArgs e)
         {
 
             dataGridView_CIM.Rows.Add(
-                textBoxId_CIM.Text,
-                textBoxName_CIM.Text,
-                textBoxAddress_CIM.Text,
-                textBoxPhone_CIM.Text
-            );
+            textBoxId_CIM.Text,
+            textBoxName_CIM.Text,
+            textBoxAddress_CIM.Text,
+            textBoxPhone_CIM.Text);
         }
 
         private void textBoxSearch_CIM_TextChanged(object sender, EventArgs e)
@@ -122,19 +110,17 @@ namespace Tyuiu.chernyhim.Sprint7.Project.V2
             if (dataGridView_CIM.Rows.Count == 0)
                 return;
 
-            var revenues = dataGridView_CIM.Rows
+            int[] revenues = dataGridView_CIM.Rows
                 .Cast<DataGridViewRow>()
-                .Where(r => r.Cells["columnShopRevenue_CIM"].Value != null)
+                .Where(r => !r.IsNewRow)
                 .Select(r => Convert.ToInt32(r.Cells["columnShopRevenue_CIM"].Value))
-                .ToList();
+                .ToArray();
 
-            int min = revenues.Min();
-            int max = revenues.Max();
-            double avg = revenues.Average();
+            var result = ds.CalculateStatistics(revenues);
 
-            labelMin_CIM.Text = min.ToString();
-            labelMax_CIM.Text = max.ToString();
-            labelAvg_CIM.Text = avg.ToString("F2");
+            labelMin_CIM.Text = result.min.ToString();
+            labelMax_CIM.Text = result.max.ToString();
+            labelAvg_CIM.Text = result.avg.ToString("F2");
         }
 
         private void comboFilter_CIM_SelectedIndexChanged(object sender, EventArgs e)
@@ -211,6 +197,25 @@ namespace Tyuiu.chernyhim.Sprint7.Project.V2
         private void buttonLoad_CIM_Click(object sender, EventArgs e)
         {
             LoadFromCsv_CIM();
+        }
+
+        private void buttonTotalRevenue_CIM_Click(object sender, EventArgs e)
+        {
+            if (dataGridView_CIM.Rows.Count == 0)
+            {
+                labelTotal_CIM.Text = "0";
+                return;
+            }
+
+            int[] revenues = dataGridView_CIM.Rows
+                .Cast<DataGridViewRow>()
+                .Where(r => !r.IsNewRow && r.Cells["columnShopRevenue_CIM"].Value != null)
+                .Select(r => Convert.ToInt32(r.Cells["columnShopRevenue_CIM"].Value))
+                .ToArray();
+
+            int total = ds.CalculateTotalRevenue(revenues);
+
+            labelTotal_CIM.Text = total.ToString();
         }
     }
 }

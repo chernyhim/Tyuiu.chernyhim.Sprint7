@@ -32,6 +32,7 @@
             buttonDelete_CIM = new Button();
             buttonStatistics_CIM = new Button();
             groupBox1 = new GroupBox();
+            buttonTotalRevenue_CIM = new Button();
             comboFilter_CIM = new ComboBox();
             groupBox2 = new GroupBox();
             textBoxSearch_CIM = new TextBox();
@@ -45,6 +46,8 @@
             panelData_CIM = new Panel();
             labelMin_Title = new Label();
             groupBox4 = new GroupBox();
+            labelTotalTitle_CIM = new Label();
+            labelTotal_CIM = new Label();
             labelAvg_CIM = new Label();
             labelAvgTitle_CIM = new Label();
             labelMax_CIM = new Label();
@@ -64,44 +67,55 @@
             // 
             // buttonAdd_CIM
             // 
-            buttonAdd_CIM.Location = new Point(16, 20);
+            buttonAdd_CIM.Location = new Point(10, 48);
             buttonAdd_CIM.Name = "buttonAdd_CIM";
-            buttonAdd_CIM.Size = new Size(80, 80);
+            buttonAdd_CIM.Size = new Size(181, 33);
             buttonAdd_CIM.TabIndex = 3;
-            buttonAdd_CIM.Text = "Add";
+            buttonAdd_CIM.Text = "Добавить";
             buttonAdd_CIM.Click += buttonAdd_CIM_Click;
             // 
             // buttonDelete_CIM
             // 
-            buttonDelete_CIM.Location = new Point(424, 20);
+            buttonDelete_CIM.Location = new Point(238, 48);
             buttonDelete_CIM.Name = "buttonDelete_CIM";
-            buttonDelete_CIM.Size = new Size(80, 80);
+            buttonDelete_CIM.Size = new Size(179, 33);
             buttonDelete_CIM.TabIndex = 2;
-            buttonDelete_CIM.Text = "Delete";
+            buttonDelete_CIM.Text = "Удалить";
             buttonDelete_CIM.UseVisualStyleBackColor = true;
             buttonDelete_CIM.Click += buttonDelete_CIM_Click;
             // 
             // buttonStatistics_CIM
             // 
-            buttonStatistics_CIM.Location = new Point(778, 20);
+            buttonStatistics_CIM.Location = new Point(757, 48);
             buttonStatistics_CIM.Name = "buttonStatistics_CIM";
-            buttonStatistics_CIM.Size = new Size(80, 80);
+            buttonStatistics_CIM.Size = new Size(179, 33);
             buttonStatistics_CIM.TabIndex = 1;
-            buttonStatistics_CIM.Text = "Stats";
+            buttonStatistics_CIM.Text = "Статистика";
             buttonStatistics_CIM.UseVisualStyleBackColor = true;
             buttonStatistics_CIM.Click += buttonStatistics_CIM_Click_1;
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(buttonTotalRevenue_CIM);
             groupBox1.Controls.Add(buttonStatistics_CIM);
             groupBox1.Controls.Add(buttonDelete_CIM);
             groupBox1.Controls.Add(buttonAdd_CIM);
-            groupBox1.Location = new Point(12, 935);
+            groupBox1.Location = new Point(18, 842);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(954, 106);
+            groupBox1.Size = new Size(942, 92);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Функции";
+            // 
+            // buttonTotalRevenue_CIM
+            // 
+            buttonTotalRevenue_CIM.Location = new Point(542, 48);
+            buttonTotalRevenue_CIM.Name = "buttonTotalRevenue_CIM";
+            buttonTotalRevenue_CIM.Size = new Size(179, 33);
+            buttonTotalRevenue_CIM.TabIndex = 4;
+            buttonTotalRevenue_CIM.Text = "Общая выручка";
+            buttonTotalRevenue_CIM.UseVisualStyleBackColor = true;
+            buttonTotalRevenue_CIM.Click += buttonTotalRevenue_CIM_Click;
             // 
             // comboFilter_CIM
             // 
@@ -133,9 +147,9 @@
             // groupBox3
             // 
             groupBox3.Controls.Add(textBoxSearch_CIM);
-            groupBox3.Location = new Point(12, 12);
+            groupBox3.Location = new Point(18, 12);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(531, 64);
+            groupBox3.Size = new Size(525, 64);
             groupBox3.TabIndex = 4;
             groupBox3.TabStop = false;
             groupBox3.Text = "Поиск";
@@ -153,9 +167,8 @@
             dataGridView_CIM.RowHeadersVisible = false;
             dataGridView_CIM.RowHeadersWidth = 51;
             dataGridView_CIM.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView_CIM.Size = new Size(942, 744);
+            dataGridView_CIM.Size = new Size(942, 632);
             dataGridView_CIM.TabIndex = 1;
-            dataGridView_CIM.CellContentClick += dataGridView_CIM_CellContentClick;
             // 
             // columnShopId_CIM
             // 
@@ -193,7 +206,7 @@
             panelData_CIM.Controls.Add(dataGridView_CIM);
             panelData_CIM.Location = new Point(18, 82);
             panelData_CIM.Name = "panelData_CIM";
-            panelData_CIM.Size = new Size(942, 744);
+            panelData_CIM.Size = new Size(942, 632);
             panelData_CIM.TabIndex = 5;
             // 
             // labelMin_Title
@@ -207,23 +220,42 @@
             // 
             // groupBox4
             // 
+            groupBox4.Controls.Add(labelTotalTitle_CIM);
+            groupBox4.Controls.Add(labelTotal_CIM);
             groupBox4.Controls.Add(labelAvg_CIM);
             groupBox4.Controls.Add(labelAvgTitle_CIM);
             groupBox4.Controls.Add(labelMax_CIM);
             groupBox4.Controls.Add(labelMaxTitle_CIM);
             groupBox4.Controls.Add(labelMin_CIM);
             groupBox4.Controls.Add(labelMin_Title);
-            groupBox4.Location = new Point(28, 846);
+            groupBox4.Location = new Point(18, 730);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(932, 83);
+            groupBox4.Size = new Size(942, 97);
             groupBox4.TabIndex = 6;
             groupBox4.TabStop = false;
             groupBox4.Text = "Статистика";
             // 
+            // labelTotalTitle_CIM
+            // 
+            labelTotalTitle_CIM.AutoSize = true;
+            labelTotalTitle_CIM.Location = new Point(345, 60);
+            labelTotalTitle_CIM.Name = "labelTotalTitle_CIM";
+            labelTotalTitle_CIM.Size = new Size(122, 20);
+            labelTotalTitle_CIM.TabIndex = 9;
+            labelTotalTitle_CIM.Text = "Общая выручка:";
+            // 
+            // labelTotal_CIM
+            // 
+            labelTotal_CIM.AutoSize = true;
+            labelTotal_CIM.Location = new Point(473, 60);
+            labelTotal_CIM.Name = "labelTotal_CIM";
+            labelTotal_CIM.Size = new Size(0, 20);
+            labelTotal_CIM.TabIndex = 8;
+            // 
             // labelAvg_CIM
             // 
             labelAvg_CIM.AutoSize = true;
-            labelAvg_CIM.Location = new Point(612, 23);
+            labelAvg_CIM.Location = new Point(422, 23);
             labelAvg_CIM.Name = "labelAvg_CIM";
             labelAvg_CIM.Size = new Size(0, 20);
             labelAvg_CIM.TabIndex = 7;
@@ -231,7 +263,7 @@
             // labelAvgTitle_CIM
             // 
             labelAvgTitle_CIM.AutoSize = true;
-            labelAvgTitle_CIM.Location = new Point(535, 23);
+            labelAvgTitle_CIM.Location = new Point(345, 23);
             labelAvgTitle_CIM.Name = "labelAvgTitle_CIM";
             labelAvgTitle_CIM.Size = new Size(71, 20);
             labelAvgTitle_CIM.TabIndex = 6;
@@ -240,7 +272,7 @@
             // labelMax_CIM
             // 
             labelMax_CIM.AutoSize = true;
-            labelMax_CIM.Location = new Point(336, 23);
+            labelMax_CIM.Location = new Point(121, 60);
             labelMax_CIM.Name = "labelMax_CIM";
             labelMax_CIM.Size = new Size(0, 20);
             labelMax_CIM.TabIndex = 5;
@@ -248,7 +280,7 @@
             // labelMaxTitle_CIM
             // 
             labelMaxTitle_CIM.AutoSize = true;
-            labelMaxTitle_CIM.Location = new Point(245, 23);
+            labelMaxTitle_CIM.Location = new Point(30, 60);
             labelMaxTitle_CIM.Name = "labelMaxTitle_CIM";
             labelMaxTitle_CIM.Size = new Size(85, 20);
             labelMaxTitle_CIM.TabIndex = 4;
@@ -297,7 +329,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(982, 1053);
+            ClientSize = new Size(982, 953);
             Controls.Add(groupBox5);
             Controls.Add(groupBox4);
             Controls.Add(panelData_CIM);
@@ -346,5 +378,8 @@
         private Button buttonSave_CIM;
         private GroupBox groupBox5;
         private Button buttonLoad_CIM;
+        private Label labelTotalTitle_CIM;
+        private Label labelTotal_CIM;
+        private Button buttonTotalRevenue_CIM;
     }
 }
