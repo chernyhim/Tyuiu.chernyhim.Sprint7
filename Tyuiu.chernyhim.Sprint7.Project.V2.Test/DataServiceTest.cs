@@ -5,8 +5,13 @@ namespace Tyuiu.chernyhim.Sprint7.Project.V2.Test
     public sealed class DataServiceTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void GetMinRevenue_ReturnsCorrectValue()
         {
+            DataService ds = new DataService();
+            int result = ds.GetMinRevenue();
+
+            Assert.AreEqual(27000, result);
         }
+
     }
 }
